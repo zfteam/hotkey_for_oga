@@ -67,66 +67,64 @@ int main()
 
     while(1)
     {
-        keydown=0;
         //memset(&outGamepadState,0,sizeof(go2_gamepad_state_t));
         go2_input_gamepad_read(input,&outGamepadState);
 
+        if (*key_map[config.key_hot] && key_map[config.key_light_up] && *key_map[config.key_light_up])
+        {
+            backlight_value += 10;
+            if (backlight_value >= 100)
+            {
+                backlight_value = 100;
+            }
+            printf("backlight up:%d\n", backlight_value);
+            go2_display_backlight_set(display, backlight_value);
 
-	if(*key_map[config.key_hot] && *key_map[config.key_light_up])
-	{
-		backlight_value+=10;
-		if(backlight_value>=100)
-		{
-			backlight_value=100;
-		}
-		printf("backlight up:%d\n",backlight_value);
-		go2_display_backlight_set(display,backlight_value);
+            keydown = 1;
+        }
+        else if (*key_map[config.key_hot] && key_map[config.key_light_down] && *key_map[config.key_light_down])
+        {
+            backlight_value -= 10;
+            if (backlight_value <= 0)
+            {
+                backlight_value = 0;
+            }
+            printf("backlight down:%d\n", backlight_value);
+            go2_display_backlight_set(display, backlight_value);
+            keydown = 1;
+        }
 
-		keydown=1;
-	}
-	else if(*key_map[config.key_hot] && *key_map[config.key_light_down])
-	{
-		backlight_value-=10;
-		if(backlight_value<=0)
-		{
-			backlight_value=0;
-		}
-		printf("backlight down:%d\n",backlight_value);
-		go2_display_backlight_set(display,backlight_value);
-		keydown=1;
-	}
-
-	if(*key_map[config.key_hot] && *key_map[config.key_volume_up])
-	{
-		volume_value+=10;
-		if(volume_value>=100)
-		{
-			volume_value=100;
-		}
-		printf("volume up:%d\n",volume_value);
-		go2_audio_volume_set(audio,volume_value);
-		keydown=1;
-	}
-	else if(*key_map[config.key_hot] && *key_map[config.key_volume_down])
-	{
-		volume_value-=10;
-		if(volume_value<=100)
-		{
-			volume_value=0;
-		}
-		printf("volume up:%d\n",volume_value);
-		go2_audio_volume_set(audio,volume_value);
-		keydown=1;
-	}
-
+        if (*key_map[config.key_hot] && key_map[config.key_volume_up] && *key_map[config.key_volume_up])
+        {
+            volume_value += 10;
+            if (volume_value >= 100)
+            {
+                volume_value = 100;
+            }
+            printf("volume up:%d\n", volume_value);
+            go2_audio_volume_set(audio, volume_value);
+            keydown = 1;
+        }
+        else if (*key_map[config.key_hot] && key_map[config.key_volume_down] && *key_map[config.key_volume_down])
+        {
+            volume_value -= 10;
+            if (volume_value <= 0)
+            {
+                volume_value = 0;
+            }
+            printf("volume up:%d\n", volume_value);
+            go2_audio_volume_set(audio, volume_value);
+            keydown = 1;
+        }
 
         if(keydown)
         {
-            sleep(1);
+            usleep(1000000);
+            keydown=0;
         }
         else
         {
-            usleep(2000000);
+            usleep(2000);
         }
     }
     go2_input_destroy(input);
