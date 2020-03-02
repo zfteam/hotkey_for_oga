@@ -30,7 +30,7 @@ int main()
         "f1","up","down","right","left"
     };
 
-    INIReader reader("config.ini");
+    INIReader reader("/home/odroid/.config/hotkey_for_oga/config.ini");
     if (reader.ParseError() < 0) {
         std::cout << "Can't load 'config.ini'\n";
     }
@@ -77,7 +77,7 @@ int main()
             {
                 backlight_value = 100;
             }
-            printf("backlight up:%d\n", backlight_value);
+            // printf("backlight up:%d\n", backlight_value);
             go2_display_backlight_set(display, backlight_value);
 
             keydown = 1;
@@ -89,7 +89,7 @@ int main()
             {
                 backlight_value = 0;
             }
-            printf("backlight down:%d\n", backlight_value);
+            // printf("backlight down:%d\n", backlight_value);
             go2_display_backlight_set(display, backlight_value);
             keydown = 1;
         }
@@ -101,7 +101,7 @@ int main()
             {
                 volume_value = 100;
             }
-            printf("volume up:%d\n", volume_value);
+            // printf("volume up:%d\n", volume_value);
             go2_audio_volume_set(audio, volume_value);
             keydown = 1;
         }
@@ -112,7 +112,7 @@ int main()
             {
                 volume_value = 0;
             }
-            printf("volume up:%d\n", volume_value);
+            // printf("volume up:%d\n", volume_value);
             go2_audio_volume_set(audio, volume_value);
             keydown = 1;
         }
