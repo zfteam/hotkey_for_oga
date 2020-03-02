@@ -6,6 +6,7 @@ cd hotkey_for_oga
 make
 ````
 
+
 install:
 
 edit the file `/etc/rc.local` in `sudo` mode, and add a line
@@ -14,3 +15,9 @@ edit the file `/etc/rc.local` in `sudo` mode, and add a line
 /home/odroid/hotkey_for_oga/hotkey_for_oga &
 ````
 
+
+configure:
+```bash
+mkdir ~/.confg/hotkey_for_oga
+cp config.ini ~/.config/hotkey_for_oga
+````
