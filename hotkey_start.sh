@@ -1,1 +1,0 @@
-/home/odroid/hotkey_for_oga/hotkey_for_oga &
