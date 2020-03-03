@@ -24,6 +24,6 @@ edit the file `/etc/rc.local` in `sudo` mode, and add a line
 
 configure:
 ```bash
-mkdir ~/.confg/hotkey_for_oga
+mkdir ~/.config/hotkey_for_oga
 cp config.ini ~/.config/hotkey_for_oga
 ````
